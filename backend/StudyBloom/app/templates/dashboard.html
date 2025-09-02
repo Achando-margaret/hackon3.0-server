@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to StudyBloom, {{ user.username }}!</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                    <li><a href="{{ url_for('subscription.view') }}">My Subscription</a></li>
+                    <li><a href="{{ url_for('ai.index') }}">AI Tools</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section>
+                <h2>Your Information</h2>
+                <p>Email: {{ user.email }}</p>
+                <p>Subscription Status: {{ user.subscription.status }}</p>
+            </section>
+
+            <section>
+                <h2>Subscription Details</h2>
+                <p>Plan: {{ user.subscription.plan }}</p>
+                <p>Renewal Date: {{ user.subscription.renewal_date }}</p>
+                <p><a href="{{ url_for('subscription.manage') }}">Manage Subscription</a></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; {{ current_year }} StudyBloom. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Subscription</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="subscription-container">
+        <h1>Your Subscription Details</h1>
+        <table>
+            <tr>
+                <th>Plan</th>
+                <th>Status</th>
+                <th>Next Billing Date</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>{{ subscription.plan }}</td>
+                <td>{{ subscription.status }}</td>
+                <td>{{ subscription.next_billing_date }}</td>
+                <td>
+                    <a href="{{ url_for('subscription.cancel', subscription_id=subscription.id) }}">Cancel</a>
+                </td>
+            </tr>
+        </table>
+        <h2>Change Subscription</h2>
+        <form action="{{ url_for('subscription.update', subscription_id=subscription.id) }}" method="POST">
+            <label for="plan">Select New Plan:</label>
+            <select name="plan" id="plan">
+                <option value="basic">Basic</option>
+                <option value="premium">Premium</option>
+                <option value="pro">Pro</option>
+            </select>
+            <button type="submit">Update Subscription</button>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>
