@@ -170,7 +170,7 @@ class Reward(db.Model):
     expires_at = db.Column(db.DateTime)
     is_used = db.Column(db.Boolean, default=False)
     used_at = db.Column(db.DateTime)
-    metadata = db.Column(db.JSON, default={})
+    extra_data = db.Column(db.JSON, default={})
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 class Group(db.Model):
@@ -218,7 +218,7 @@ class AIInteraction(db.Model):
     response_time_ms = db.Column(db.Integer)
     success = db.Column(db.Boolean, default=True)
     error_message = db.Column(db.Text)
-    metadata = db.Column(db.JSON, default={})
+    extra_data = db.Column(db.JSON, default={})
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 class UserSettings(db.Model):
